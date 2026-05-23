@@ -1,28 +1,11 @@
 {
-  "$schema": "https://mintlify.com/docs.json",
-  "name": "Antigravity CLI",
+  "projectType": "cli-tool",
+  "projectName": "Antigravity CLI",
+  "projectDescription": "A terminal-first AI coding agent that understands your codebase, makes edits with your permission, and executes commands — optimized for keyboard-driven workflows and remote SSH sessions.",
   "theme": "luma",
-  "colors": {
-    "primary": "#b38135",
-    "light": "#dad6d3",
-    "dark": "#448ce0"
-  },
-  "favicon": "https://media.brand.dev/7432a28e-67a4-4977-907b-9dca085404cc.png",
-  "logo": {
-    "light": "https://media.brand.dev/f597b246-1690-4074-9ea9-cb8167692d2e.svg",
-    "dark": "https://media.brand.dev/f597b246-1690-4074-9ea9-cb8167692d2e.svg"
-  },
-  "navbar": {
-    "primary": {
-      "type": "github",
-      "href": "https://github.com/google-antigravity/antigravity-cli"
-    }
-  },
-  "footer": {
-    "socials": {
-      "github": "https://github.com/google-antigravity/antigravity-cli"
-    }
-  },
+  "primaryColor": "#b38135",
+  "lightColor": "#dad6d3",
+  "darkColor": "#448ce0",
   "navigation": {
     "tabs": [
       {
@@ -84,5 +67,22 @@
         ]
       }
     ]
-  }
+  },
+  "keyFeatures": [
+    "Multi-step reasoning and multi-file editing via shared Antigravity agent engine",
+    "Terminal User Interface (TUI) optimized for keyboard-driven workflows",
+    "SSH/remote session support with authorization URL fallback",
+    "Tool permission modes including proceed-in-sandbox for secure command execution",
+    "Plugin discovery for custom skills and specialized agents",
+    "Persistent session history with /resume command",
+    "Bidirectional settings sync with Antigravity 2.0 GUI",
+    "Session export to Antigravity 2.0 for continued visual orchestration"
+  ],
+  "publicApiSurface": [
+    "/logout — clear saved credentials and sign out",
+    "/settings — open settings and color scheme selection",
+    "/usage — view real-time model usage statistics",
+    "/quota — view remaining quota and consumption",
+    "/resume — resume a previous session (with ctrl+delete to delete sessions)"
+  ]
 }

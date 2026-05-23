@@ -1,0 +1,65 @@
+---
+title: "Tool permissions and the proceed-in-sandbox mode"
+description: "Tool permissions control when Antigravity CLI requests approval before running commands. The proceed-in-sandbox mode auto-approves safe operations and flags bypass attempts."
+---
+
+Tool permissions determine when Antigravity CLI asks for your approval before the agent takes an action — running a terminal command, writing a file, or calling an external tool. The permission system exists because AI agents operate autonomously and can cause unintended side effects. By configuring permissions, you decide how much the agent can do without interrupting you, and where it must stop and ask.
+
+## Why permissions exist
+
+Autonomous AI agents present real security risks. Before you adjust your permission settings, understand what those risks are.
+
+<Warning>
+  AI coding agents are known to have certain security risks, including **autonomous code execution**, **data exfiltration**, **prompt injection**, and **supply chain risks**. You should monitor and verify all actions taken by the agent, regardless of which permission mode you use.
+</Warning>
+
+These risks are not hypothetical. An agent that can run terminal commands without approval can, in principle, read files you didn't intend to expose, install packages from untrusted sources, or make network requests. The permission system is your primary control surface for limiting that exposure.
+
+## The `proceed-in-sandbox` mode
+
+The `proceed-in-sandbox` permission mode, introduced in v1.0.1, gives you a middle ground between fully manual approval and fully automatic execution.
+
+When `proceed-in-sandbox` is active:
+
+- **Commands that run inside the secure sandbox** are auto-approved. You are not interrupted for each one, and the agent can work through multi-step tasks without constant prompts.
+- **Commands that attempt to bypass the sandbox** — for example, operations that would affect the host system outside the sandbox boundary — are flagged and require your manual approval before proceeding.
+
+This mode is designed for workflows where you trust the agent to operate within a controlled environment but still want a human checkpoint before any action escapes that boundary.
+
+<Tip>
+  Use `proceed-in-sandbox` when you want to reduce approval interruptions during long coding sessions without giving the agent unrestricted access to your host system.
+</Tip>
+
+## How to configure permissions
+
+Open `/settings` from within the CLI to view and change your tool permission mode. Changes you make here sync bidirectionally to Antigravity 2.0 — see [Session management](/concepts/session-management) for details on how settings sync works.
+
+## Monitoring and verifying agent actions
+
+Regardless of your permission mode, you should actively monitor what the agent does:
+
+- **Review diffs before accepting edits.** The agent always shows you a diff of proposed file changes before applying them. Read it before confirming.
+- **Read tool call output.** When the agent runs a terminal command, its output is displayed inline in the session. Check it for unexpected behavior.
+- **Use `/usage` and `/quota` for real-time stats.** These commands force a live reload of model consumption data so you can see exactly what the agent has called.
+- **Check the session history.** Every action the agent took is logged in the session record and accessible via `/resume`.
+
+<Info>
+  If you notice unexpected behavior — commands you didn't expect, files accessed outside your project, or network activity — end the session immediately with the global exit keybinding (Ctrl+D Ctrl+D) and review the session history.
+</Info>
+
+## Frequently asked questions
+
+<AccordionGroup>
+  <Accordion title="What is the sandbox?">
+    The sandbox is a secure, isolated execution environment that constrains what terminal commands can affect. Commands running inside the sandbox cannot directly modify your host filesystem, make unrestricted network calls, or escape the project boundary. The `proceed-in-sandbox` mode auto-approves commands that stay within this boundary.
+  </Accordion>
+  <Accordion title="When will I be prompted for approval?">
+    You are prompted whenever the agent wants to take an action that exceeds your current permission mode. With `proceed-in-sandbox` active, this means any command that attempts to run outside the sandbox boundary. In stricter permission modes, you may be prompted for every tool call the agent makes.
+  </Accordion>
+  <Accordion title="Can I deny a tool call without ending the session?">
+    Yes. When the agent prompts you for approval, you can decline the specific action. The session continues and the agent will either try an alternative approach or ask you how you want to proceed.
+  </Accordion>
+  <Accordion title="Do permission settings sync to Antigravity 2.0?">
+    Yes. Permission settings are part of the shared settings layer between the CLI and the GUI. A change you make in `/settings` in the CLI will be reflected in Antigravity 2.0, and vice versa.
+  </Accordion>
+</AccordionGroup>

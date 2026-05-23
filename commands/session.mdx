@@ -1,0 +1,30 @@
+---
+title: "Session commands: resume and manage past sessions"
+description: "Use /resume to list and return to a previous Antigravity CLI session. Includes keyboard shortcuts for session deletion and the global exit keybinding."
+---
+
+Session commands let you pick up where you left off without losing context. Antigravity CLI persists your session history across restarts, and the `/resume` command gives you a searchable list of past sessions you can jump back into at any point.
+
+## `/resume`
+
+Displays a list of your previous sessions and lets you select one to continue. Once you choose a session, the full conversation history and context are restored.
+
+### Keyboard shortcuts
+
+| Action | Shortcut |
+| :--- | :--- |
+| Delete a session | `ctrl+delete` |
+| Exit Antigravity CLI globally | `ctrl+d` `ctrl+d` (double tap) |
+
+<Note>
+The session deletion shortcut changed from `ctrl+d` to `ctrl+delete` in v1.0.1. This resolves a conflict with the global exit keybinding (`ctrl+d` `ctrl+d`) and also preserves Emacs-style forward-delete behavior in the search input field within the session list.
+</Note>
+
+### Why the shortcut changed
+
+Prior to v1.0.1, pressing `ctrl+d` inside the `/resume` session list would delete the selected session. This conflicted with two other behaviors:
+
+- **Global exit**: double-tapping `ctrl+d` exits the CLI entirely. A single `ctrl+d` press inside the session list would be ambiguous.
+- **Emacs-style forward-delete**: the search input in the session list uses `ctrl+d` as a forward-delete key, matching standard terminal editing conventions.
+
+Changing the deletion shortcut to `ctrl+delete` removes both conflicts without affecting any other part of the interface.

@@ -1,133 +1,73 @@
 ---
-title: "Introduction"
-description: "Welcome to the new home for your documentation"
-icon: 'star'
+title: "Antigravity CLI: AI coding agent for your terminal"
+description: "Antigravity CLI brings multi-step reasoning, multi-file editing, and tool calling directly to your terminal. Optimized for keyboard-driven and SSH workflows."
 ---
 
-## Setting up
+Antigravity CLI is a terminal-first AI coding agent that understands your codebase, proposes edits with your approval, and executes commands — all without leaving your terminal. It runs on the same core agent engine as Antigravity 2.0, so every improvement to the engine benefits both interfaces automatically.
 
-Get your documentation site up and running in minutes.
-
-<Card
-  title="Start here"
-  icon="rocket"
-  href="/quickstart"
-  horizontal
->
-  Follow our three step quickstart guide.
-</Card>
-
-## Make it yours
-
-Design a docs site that looks great and empowers your users.
-
-<Columns cols={2}>
-  <Card
-    title="Edit locally"
-    icon="pen-to-square"
-    href="/development"
-  >
-    Edit your docs locally and preview them in real time.
+<CardGroup cols={2}>
+  <Card title="Installation" icon="download" href="/installation">
+    Install Antigravity CLI on macOS, Linux, or Windows in under a minute.
   </Card>
-  <Card
-    title="Customize your site"
-    icon="palette"
-    href="/essentials/settings"
-  >
-    Customize the design and colors of your site to match your brand.
+  <Card title="Quickstart" icon="rocket" href="/quickstart">
+    Authenticate and start your first AI-assisted coding session.
   </Card>
-    <Card
-    title="Set up navigation"
-    icon="map"
-    href="/essentials/navigation"
-  >
-    Organize your docs to help users find what they need and succeed with your product.
+  <Card title="Command Reference" icon="terminal" href="/commands/overview">
+    Browse all slash commands — session, account, settings, and more.
   </Card>
-  <Card
-    title="API documentation"
-    icon="terminal"
-    href="/api-reference/introduction"
-  >
-    Auto-generate API documentation from OpenAPI specifications.
+  <Card title="Authentication" icon="key" href="/authentication/overview">
+    Sign in locally or over SSH, including enterprise GCP access.
   </Card>
-</Columns>
+</CardGroup>
 
-## Create beautiful pages
+## What Antigravity CLI does
 
-Everything you need to create world-class documentation.
+Antigravity CLI brings Antigravity's core agent capabilities to your terminal:
 
-<Columns cols={2}>
-  <Card
-    title="Write with MDX"
-    icon="pen-fancy"
-    href="/essentials/markdown"
-  >
-    Use MDX to style your docs pages.
-  </Card>
-  <Card
-    title="Code samples"
-    icon="code"
-    href="/essentials/code"
-  >
-    Add sample code to demonstrate how to use your product.
-  </Card>
-  <Card
-    title="Images"
-    icon="image"
-    href="/essentials/images"
-  >
-    Display images and other media.
-  </Card>
-  <Card
-    title="Reusable snippets"
-    icon="recycle"
-    href="/essentials/reusable-snippets"
-  >
-    Write once and reuse across your docs.
-  </Card>
-</Columns>
+- **Multi-step reasoning** — The agent breaks down complex tasks and works through them step by step, asking for your approval before making changes.
+- **Multi-file editing** — Edit across files and directories in a single session, with diffs shown before any change is applied.
+- **Tool calling** — Run terminal commands, search code, and interact with external tools — all from within a single chat session.
+- **Persistent history** — Resume previous sessions at any time with `/resume`.
 
-## Make your content agent ready
+## Get started in three steps
 
-Make your docs work for humans and AI agents alike.
+<Steps>
+  <Step title="Install the CLI">
+    Run the one-line installer for your platform. See [Installation](/installation) for all options including Windows.
 
-<Columns cols={2}>
-  <Card
-    title="Prompt component"
-    icon="robot"
-    href="/agent-ready/prompt"
-  >
-    Embed shareable AI prompts readers can copy or open in Cursor.
-  </Card>
-  <Card
-    title="Visibility"
-    icon="eye"
-    href="/agent-ready/visibility"
-  >
-    Show different content to humans and agents reading your docs.
-  </Card>
-  <Card
-    title="Contextual menu"
-    icon="bolt"
-    href="/agent-ready/contextual"
-  >
-    Give readers one-click access to Claude, ChatGPT, Cursor, and more.
-  </Card>
-  <Card
-    title="AI coding tools"
-    icon="wand-magic-sparkles"
-    href="/ai-tools/claude-code"
-  >
-    Set up Claude Code, Cursor, or Windsurf with Mintlify's skill.
-  </Card>
-</Columns>
+    ```bash
+    curl -fsSL https://antigravity.google/cli/install.sh | bash
+    ```
+  </Step>
+  <Step title="Sign in">
+    Launch the CLI and authenticate with your Google account. The CLI opens your browser automatically, or prints an authorization URL for SSH sessions.
 
-## Need inspiration?
+    ```bash
+    agy
+    ```
+  </Step>
+  <Step title="Start coding">
+    Describe what you want to build or fix. The agent reads your codebase, proposes changes, and waits for your approval before applying them.
+  </Step>
+</Steps>
 
-<Card
-  title="See complete examples"
-  icon="stars"
-  href="https://mintlify.com/customers"
->
-  Browse our showcase of exceptional documentation sites.
-</Card>
+<Note>
+  Antigravity CLI shares settings and session data with Antigravity 2.0. If you already use the GUI, your preferences carry over automatically.
+</Note>
+
+## Explore the docs
+
+<CardGroup cols={2}>
+  <Card title="Core concepts" icon="lightbulb" href="/concepts/agent-engine">
+    Understand the agent engine, session model, and tool permission system.
+  </Card>
+  <Card title="Remote SSH guide" icon="server" href="/guides/remote-ssh">
+    Use Antigravity CLI on remote machines and headless environments.
+  </Card>
+  <Card title="Plugins & skills" icon="puzzle-piece" href="/configuration/plugins">
+    Extend the CLI with custom skills and specialized agents.
+  </Card>
+  <Card title="Export to GUI" icon="arrow-up-right-from-square" href="/guides/export-to-gui">
+    Continue a terminal session in the Antigravity 2.0 interface.
+  </Card>
+</CardGroup>

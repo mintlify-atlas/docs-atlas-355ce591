@@ -1,0 +1,76 @@
+---
+title: "Install Antigravity CLI on macOS, Linux, and Windows"
+description: "Install the Antigravity CLI on your machine with a single command. Supports macOS, Linux, Windows PowerShell, and Windows Command Prompt."
+---
+
+Antigravity CLI installs with a single command on every major platform. The installer downloads the latest release, places the `agy` binary on your `PATH`, and exits — no package manager or additional dependencies required.
+
+## Install the CLI
+
+Choose the tab for your operating system and run the command in your terminal.
+
+<Tabs>
+  <Tab title="macOS / Linux">
+    Open a terminal and run:
+
+    ```bash
+    curl -fsSL https://antigravity.google/cli/install.sh | bash
+    ```
+
+    The installer script downloads the appropriate binary for your architecture, installs it to a location on your `PATH`, and prints a confirmation when it finishes.
+  </Tab>
+  <Tab title="Windows PowerShell">
+    Open PowerShell and run:
+
+    ```powershell
+    irm https://antigravity.google/cli/install.ps1 | iex
+    ```
+
+    `irm` downloads the install script and `iex` executes it. The script installs `agy` and adds it to your user `PATH`.
+  </Tab>
+  <Tab title="Windows CMD">
+    Open Command Prompt and run:
+
+    ```cmd
+    curl -fsSL https://antigravity.google/cli/install.cmd -o install.cmd && install.cmd && del install.cmd
+    ```
+
+    This command downloads the install script, runs it, and then removes the temporary file.
+  </Tab>
+</Tabs>
+
+## Verify the installation
+
+After the installer completes, confirm that `agy` is available and working correctly.
+
+<Steps>
+  <Step title="Open a new terminal window">
+    Open a fresh terminal session so that any `PATH` changes made by the installer are applied. On Windows, close and reopen PowerShell or Command Prompt.
+  </Step>
+  <Step title="Check the version">
+    Run the following command to confirm the CLI is on your `PATH` and print the installed version:
+
+    ```bash
+    agy --version
+    ```
+
+    You should see a version number printed to the terminal.
+  </Step>
+  <Step title="Launch the CLI">
+    Start Antigravity CLI to confirm it loads correctly:
+
+    ```bash
+    agy
+    ```
+
+    If this is your first launch, the CLI will prompt you to authenticate. See [Authentication](/authentication/overview) for details.
+  </Step>
+</Steps>
+
+<Note>
+  For enterprise access, you will need to connect your GCP project during onboarding. See the [Enterprise authentication](/authentication/enterprise) page for details.
+</Note>
+
+## Next steps
+
+Once `agy` is installed and verified, follow the [Quickstart](/quickstart) to authenticate and start your first session.

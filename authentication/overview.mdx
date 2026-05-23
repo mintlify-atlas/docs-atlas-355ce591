@@ -1,0 +1,56 @@
+---
+title: "Sign in to Antigravity CLI: local and SSH authentication"
+description: "Antigravity CLI authenticates via the system keyring with a Google Sign-In fallback. Learn how sign-in works on local machines and over SSH, and how to sign out."
+---
+
+Antigravity CLI uses your system keyring to manage credentials. If no active session exists, it falls back to Google Sign-In automatically. The exact sign-in experience depends on whether you're running the CLI locally or over an SSH connection.
+
+## Sign in
+
+<Tabs>
+  <Tab title="Local">
+    When you run Antigravity CLI on your local machine, it opens your default browser automatically to complete the Google Sign-In flow.
+
+    <Steps>
+      <Step title="Start the CLI">
+        Launch Antigravity CLI in your terminal. If no active session is found in the system keyring, authentication starts automatically.
+      </Step>
+      <Step title="Complete sign-in in the browser">
+        Your default browser opens to the Google Sign-In page. Sign in with your Google account.
+      </Step>
+      <Step title="Return to the terminal">
+        After you authorize access, the browser confirms the sign-in and you can close the tab. The CLI resumes in your terminal.
+      </Step>
+    </Steps>
+  </Tab>
+  <Tab title="Remote / SSH">
+    When you run Antigravity CLI over an SSH session, the CLI detects the remote environment and cannot open a browser on your behalf. Instead, it prints an authorization URL for you to open locally.
+
+    <Steps>
+      <Step title="Start the CLI over SSH">
+        Connect to your remote machine and launch Antigravity CLI. If no active session is found, the CLI prints an authorization URL to the terminal output.
+      </Step>
+      <Step title="Open the URL on your local machine">
+        Copy the authorization URL from the terminal and open it in a browser on your local machine.
+      </Step>
+      <Step title="Complete sign-in in the browser">
+        Sign in with your Google account on the Google Sign-In page.
+      </Step>
+      <Step title="Return to the remote terminal">
+        After you authorize access, the CLI on your remote machine detects the completed sign-in and continues.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## Sign out
+
+To clear your saved credentials, run `/logout` inside the CLI. This removes the stored session from the system keyring.
+
+```text
+/logout
+```
+
+## Enterprise and GCP access
+
+If your organization uses enterprise access, you connect a GCP project during the onboarding flow. See [Enterprise authentication with GCP](/authentication/enterprise) for details.

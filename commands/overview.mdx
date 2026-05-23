@@ -1,0 +1,30 @@
+---
+title: "Antigravity CLI slash commands: complete reference"
+description: "A complete reference for all slash commands available in Antigravity CLI — session, account, settings, and quota — grouped by category with links to detailed pages."
+---
+
+Antigravity CLI exposes a set of slash commands that you can run directly from the terminal interface. Type `/` at any prompt to access them. Each command performs a specific action — from resuming a previous session, to signing out, to inspecting your current model quota in real time.
+
+## Command categories
+
+<CardGroup cols={2}>
+  <Card title="Session commands" icon="rotate-left" href="/commands/session">
+    Resume previous sessions and manage session history with `/resume`.
+  </Card>
+  <Card title="Account commands" icon="user" href="/commands/account">
+    Sign out and manage your credentials with `/logout`.
+  </Card>
+  <Card title="Settings and quota commands" icon="sliders" href="/commands/settings-usage">
+    Configure preferences and monitor model usage with `/settings`, `/usage`, and `/quota`.
+  </Card>
+</CardGroup>
+
+## Quick reference
+
+| Command | Category | Description |
+| :--- | :--- | :--- |
+| `/resume` | Session | List and resume a previous session; press `ctrl+delete` to delete a session from the list |
+| `/logout` | Account | Clear saved credentials from the system keyring and sign out |
+| `/settings` | Settings | Open the settings panel and color scheme selection |
+| `/usage` | Quota | View real-time model usage statistics with a forced reload of model configuration and quotas |
+| `/quota` | Quota | View remaining quota and consumption data with a forced real-time reload |

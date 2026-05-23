@@ -1,0 +1,78 @@
+---
+title: "How session management works in Antigravity CLI"
+description: "Antigravity CLI sessions persist your full conversation history so you can resume tasks, manage long inputs, and export sessions to the Antigravity 2.0 GUI."
+---
+
+A session in Antigravity CLI is a persistent record of your conversation with the agent, including every message, tool call, file edit, and agent response. Sessions are stored locally and survive restarts, so you can pick up a task hours or days later without losing context. You can also export any session to the Antigravity 2.0 GUI to continue working in the visual interface.
+
+## What a session contains
+
+Each session holds:
+
+- Your full message history with the agent
+- All tool calls the agent made and their results
+- File edits proposed and accepted during the session
+- Agent reasoning steps and intermediate outputs
+
+This persistent record is what makes `/resume` possible — the agent has access to the same context it had when you last left off, rather than starting fresh.
+
+## Resuming a session
+
+Use the `/resume` command to open a list of your saved sessions and continue one.
+
+<Steps>
+  <Step title="Open the session picker">
+    Type `/resume` in the CLI. A list of your saved sessions appears, sorted by most recent activity.
+  </Step>
+  <Step title="Select a session">
+    Use the arrow keys to highlight the session you want to continue, then press **Enter**. The full conversation history loads and the agent is ready to continue from where you stopped.
+  </Step>
+  <Step title="Delete a session (optional)">
+    To remove a session from the list, highlight it and press **Ctrl+Delete**. This permanently removes the session and its history.
+
+    <Note>
+      The session deletion shortcut is **Ctrl+Delete**, not Ctrl+D. Ctrl+D is reserved as the global exit keybinding for the CLI. Using Ctrl+Delete avoids conflicts and also preserves Emacs-style forward-delete in the search input field.
+    </Note>
+  </Step>
+</Steps>
+
+## Long-input folding
+
+When you paste a large block of text — such as an error log, a file's contents, or a stack trace — the CLI automatically folds it into a compact placeholder in the viewport:
+
+```
+[Pasted text #1 +42 lines]
+```
+
+The placeholder shows the input number and how many lines were folded. The full text is still sent to the agent; folding only affects what is displayed in the terminal to keep the interface readable during long sessions. Line counting for folded inputs was fixed in v1.0.1 to ensure the `+Y lines` figure is always accurate.
+
+## Exporting a session to Antigravity 2.0
+
+If you want to continue a terminal session in the full GUI, you can export it directly to Antigravity 2.0.
+
+<Tip>
+  Session export is useful when a task grows beyond keyboard-driven work and you want the visual orchestration tools, project management features, or richer diff views available in the GUI.
+</Tip>
+
+The exported session carries your full conversation history, so the GUI agent has the same context the CLI agent had. You don't need to summarize or re-explain what you were working on.
+
+## Bidirectional settings sync
+
+Antigravity CLI and Antigravity 2.0 share a settings layer. In practice this means:
+
+- Permission changes you make in **Settings** in the GUI — such as toggling tool permissions or switching models — appear in the CLI on your next command.
+- Preference changes you make in `/settings` inside the CLI — such as changing the color scheme or updating quota preferences — are reflected the next time you open the GUI.
+
+Neither interface is the "source of truth." Changes flow in both directions, and the most recent write wins.
+
+<AccordionGroup>
+  <Accordion title="Where are sessions stored?">
+    Sessions are stored locally on your machine by the CLI. The exact storage path depends on your platform and follows standard application data conventions. Session data is not stored in your project directory or version-controlled by default.
+  </Accordion>
+  <Accordion title="Can I search within a session list?">
+    Yes. The `/resume` session picker includes a search input field. Type to filter sessions by name or content. The search input supports Emacs-style navigation, including forward-delete with **Ctrl+Delete** used only for session removal, not for text editing in the field.
+  </Accordion>
+  <Accordion title="What happens to a session's context when I export it?">
+    When you export to Antigravity 2.0, the full message history and tool call results are transferred. The GUI agent picks up with the same context, so you can continue naturally without summarizing prior work.
+  </Accordion>
+</AccordionGroup>

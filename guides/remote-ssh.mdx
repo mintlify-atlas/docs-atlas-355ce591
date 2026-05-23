@@ -1,0 +1,54 @@
+---
+title: "Use Antigravity CLI over SSH and remote connections"
+description: "Learn how Antigravity CLI detects SSH sessions automatically and walks you through completing authentication from your local machine."
+---
+
+Antigravity CLI is designed to work as naturally on a remote server as it does on your local machine. Because it runs entirely in the terminal with a keyboard-driven interface and minimal resource overhead, it is well suited to SSH sessions and remote development environments where a full GUI is impractical or unavailable.
+
+## How SSH detection works
+
+When you start Antigravity CLI inside an SSH session, the CLI detects the remote environment automatically — no additional flags or configuration required. Instead of attempting to open a browser on the remote machine (which would fail), it prints an authorization URL directly in your terminal. You then open that URL on your local machine to complete the sign-in flow.
+
+This means you can authenticate and get to work without leaving your terminal or setting up port forwarding.
+
+## Authenticate over SSH
+
+<Steps>
+  <Step title="Start the CLI on your remote machine">
+    Connect to your server via SSH and run Antigravity CLI. The CLI detects the SSH session and skips the automatic browser launch.
+
+    ```bash
+    agy
+    ```
+  </Step>
+  <Step title="Copy the authorization URL">
+    The CLI prints an authorization URL in the terminal. Copy the full URL printed to your terminal output.
+  </Step>
+  <Step title="Open the URL on your local machine">
+    Paste the URL into a browser on your local machine and sign in with your Google account. Once you approve access, the CLI on the remote server picks up the session automatically.
+  </Step>
+  <Step title="Confirm you are signed in">
+    The CLI updates to show your account and you can begin working. Your credentials are stored in the system keyring on the remote server for future sessions. To sign out at any time, run `/logout`.
+  </Step>
+</Steps>
+
+## Why the CLI is built for remote work
+
+Antigravity CLI was explicitly optimized for SSH and remote workflows:
+
+- **Low resource overhead**: The TUI consumes far less memory and CPU than a GUI application, which matters on servers, VMs, and cloud instances where resources are shared or metered.
+- **No display server required**: The CLI runs over any standard terminal connection — no X11 forwarding, Wayland, or remote desktop needed.
+- **Keyboard-first design**: All navigation, commands, and agent interactions are accessible without a mouse, keeping you in your flow regardless of connection latency.
+- **Persistent history**: Session history and preferences are preserved across connections, so reconnecting to a server picks up exactly where you left off.
+
+<Tip>
+  On resource-constrained servers or high-latency connections, Antigravity CLI's lightweight TUI gives you the full agent experience without the overhead of a graphical interface. It is a practical choice for CI runners, cloud VMs, and shared development hosts.
+</Tip>
+
+## Tips for remote usage
+
+**Reconnecting to an existing session**: Use `/resume` to list and reopen previous sessions. To delete a session from the list, press `ctrl+delete` (not `ctrl+d`).
+
+**Enterprise access**: If your organization uses a GCP project for enterprise access, connect it during onboarding. See the Enterprise guide for details.
+
+**Signing out**: Run `/logout` to clear saved credentials from the system keyring on the remote machine.

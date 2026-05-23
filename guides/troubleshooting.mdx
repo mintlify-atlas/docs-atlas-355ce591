@@ -1,0 +1,72 @@
+---
+title: "Troubleshoot Antigravity CLI: fixes for known issues"
+description: "Find resolutions for known Antigravity CLI issues including authentication hangs, Windows-specific bugs, onboarding failures, pasting problems, and keybinding conflicts."
+---
+
+This guide covers known issues in Antigravity CLI and how to resolve them. Most of the problems below were reported by users and addressed in version 1.0.1. If you are on an older version, updating to the latest release is the fastest fix for many of these issues.
+
+<AccordionGroup>
+  <Accordion title="Authentication hangs or OAuth token is not saved">
+    **Symptom**: The CLI appears to stall during sign-in, or you are repeatedly prompted to authenticate even after a successful login.
+
+    **Cause**: A bug in OAuth token persistence caused credentials to not be saved correctly to the system keyring, leading to authentication hangs on startup or repeated sign-in prompts.
+
+    **Fix**: This was resolved in v1.0.1. Update to the latest version by re-running the installer for your platform:
+
+    ```bash
+    curl -fsSL https://antigravity.google/cli/install.sh | bash
+    ```
+
+    After updating, run `/logout` to clear any stale credentials, then sign in again. If you are in an SSH session, the CLI will print an authorization URL for you to open in a local browser — see [Use Antigravity CLI over SSH](/guides/remote-ssh) for the full flow.
+  </Accordion>
+
+  <Accordion title="Windows: logs not displaying, resize events ignored, or slow shutdown">
+    **Symptom**: On Windows, one or more of the following occur: log output does not appear in the terminal, the terminal does not respond correctly when you resize the window, or the CLI takes an unusually long time to shut down after you exit.
+
+    **Cause**: A bug in Windows log redirection caused logs to not be routed correctly. This had a cascading effect where window resize events were swallowed by the terminal and the shutdown sequence stalled waiting for resources that were not properly released.
+
+    **Fix**: All three issues were resolved in v1.0.1. Update using PowerShell:
+
+    ```powershell
+    irm https://antigravity.google/cli/install.ps1 | iex
+    ```
+
+    Or using CMD:
+
+    ```cmd
+    curl -fsSL https://antigravity.google/cli/install.cmd -o install.cmd && install.cmd && del install.cmd
+    ```
+  </Accordion>
+
+  <Accordion title="Onboarding screen goes blank during setup">
+    **Symptom**: While going through the initial onboarding flow, the UI suddenly reverts to a blank onboarding screen as if you had just launched the CLI for the first time.
+
+    **Cause**: A race condition between the onboarding UI and a concurrent terminal resize event could reset the UI state, discarding progress and presenting a blank screen.
+
+    **Fix**: This was resolved in v1.0.1. Update to the latest version and run the onboarding flow again. If you are on a narrow or resizable terminal, avoid resizing the window while onboarding is in progress until you have confirmed you are on v1.0.1 or later.
+  </Accordion>
+
+  <Accordion title="Long pasted text causes layout issues">
+    **Symptom**: When you paste a large block of text into the CLI input, the viewport becomes cluttered or difficult to read.
+
+    **Cause**: The line counter for pasted input was not counting lines correctly, so extremely long inputs were not being condensed into a compact placeholder.
+
+    **Fix**: This was resolved in v1.0.1. After updating, long pasted inputs are automatically folded into a `[Pasted text #X +Y lines]` placeholder, keeping the viewport clean while preserving the full content for the agent.
+  </Accordion>
+
+  <Accordion title="Pressing ctrl+d in /resume deletes a session unexpectedly, or closes the CLI">
+    **Symptom**: In the `/resume` session list, pressing `ctrl+d` either closes the entire CLI instead of deleting the selected session, or causes unexpected behavior in the search input field.
+
+    **Cause**: `ctrl+d` was previously the keybinding to delete a session in `/resume`, but it conflicted with the global exit keybinding (`ctrl+d` `ctrl+d`) and with Emacs-style forward-delete in search input fields. This led to ambiguous and sometimes destructive behavior.
+
+    **Fix**: The delete session keybinding was changed to `ctrl+delete` in v1.0.1. Use `ctrl+delete` to delete a session from the `/resume` list. The `ctrl+d` keybinding now behaves consistently as part of the global exit sequence and for forward-delete in search fields.
+  </Accordion>
+</AccordionGroup>
+
+## Still having trouble?
+
+If your issue is not covered above or the fix did not resolve it, check the open issues on GitHub or file a new report with your CLI version, operating system, and steps to reproduce.
+
+<Card title="Open a GitHub issue" icon="github" href="https://github.com/google-antigravity/antigravity-cli/issues">
+  Browse known issues and file a bug report for problems not covered in this guide.
+</Card>

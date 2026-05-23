@@ -1,0 +1,60 @@
+---
+title: "Antigravity CLI: terminal-first AI coding agent"
+description: "Learn what Antigravity CLI is, how it compares to Antigravity 2.0, and how the shared agent engine and integration points connect both interfaces."
+---
+
+Antigravity CLI brings the full power of Antigravity's agent engine directly to your terminal. It understands your codebase, proposes multi-file edits with your approval, and executes commands — all without leaving the command line. It is designed for keyboard-driven workflows, remote SSH sessions, and environments where a full GUI is impractical or unnecessary.
+
+<Warning>
+  AI coding agents carry known security risks. Antigravity CLI can execute terminal commands, read files, and call external tools autonomously. These capabilities expose you to risks including autonomous code execution, data exfiltration, prompt injection, and supply chain attacks. Review every action the agent proposes before approving it, and never grant permissions broader than your current task requires.
+</Warning>
+
+## What Antigravity CLI does
+
+Antigravity CLI is a Terminal User Interface (TUI) application. When you launch it with `agy`, you enter an interactive chat session where you can describe tasks in plain language. The agent reads your codebase, reasons across multiple steps, and proposes changes — showing you diffs before applying anything. You stay in control: the agent asks for your approval before making edits or running commands.
+
+Key capabilities include:
+
+- **Multi-step reasoning** — The agent breaks complex tasks into sequential steps and works through them methodically.
+- **Multi-file editing** — A single session can span as many files and directories as the task requires.
+- **Tool calling** — The agent can run terminal commands, search your codebase, and interact with external tools, subject to the permission mode you configure.
+- **Persistent history** — Sessions are saved and can be resumed at any time with `/resume`.
+
+## Antigravity CLI vs. Antigravity 2.0
+
+Antigravity CLI and Antigravity 2.0 are two surfaces on the same underlying technology. Choose the one that fits your workflow — or use both.
+
+| Feature | Antigravity CLI | Antigravity 2.0 |
+| :--- | :--- | :--- |
+| **Primary focus** | Speed, keyboard efficiency, low overhead | Comprehensiveness, visual orchestration, project management |
+| **Interface** | Terminal User Interface (TUI) | Full rich GUI application |
+| **Best for** | SSH/remote sessions, keyboard-first workflows | Local workspaces, heavy orchestration |
+| **Agent engine** | Shared Core Agent Engine | Shared Core Agent Engine |
+
+## Shared agent engine
+
+Both interfaces run on the same Core Agent Engine. This means every improvement to the reasoning model, tool calling system, or safety controls applies to both automatically — there is no separate CLI-only agent or GUI-only agent. You get the same quality of reasoning whether you are working in a terminal over SSH or in the full desktop application.
+
+## Integration with Antigravity 2.0
+
+Antigravity CLI is not isolated from the GUI. The two interfaces share infrastructure so you can move between them without losing context or reconfiguring anything:
+
+- **Shared settings** — Preferences and permissions sync bidirectionally between the CLI and Antigravity 2.0. Configure once and both interfaces reflect the change.
+- **Session export** — Export any terminal session to the Antigravity 2.0 GUI to continue working with the full visual interface. See the [Export to GUI](/guides/export-to-gui) guide.
+
+## Where to go next
+
+<CardGroup cols={2}>
+  <Card title="Install the CLI" icon="download" href="/installation">
+    Install `agy` on macOS, Linux, or Windows using the one-line installer for your platform.
+  </Card>
+  <Card title="Quickstart" icon="rocket" href="/quickstart">
+    Authenticate and run your first AI-assisted coding session in minutes.
+  </Card>
+  <Card title="Authentication" icon="key" href="/authentication/overview">
+    Learn how sign-in works locally and over SSH, including enterprise GCP access.
+  </Card>
+  <Card title="Agent engine concepts" icon="lightbulb" href="/concepts/agent-engine">
+    Understand how the Core Agent Engine works and how it powers both interfaces.
+  </Card>
+</CardGroup>

@@ -1,0 +1,19 @@
+---
+title: "Extend Antigravity CLI with plugins, skills, and agents"
+description: "Antigravity CLI automatically discovers custom skills and specialized agents in your plugin directories, making them available in every session without manual registration."
+---
+
+Antigravity CLI can be extended with plugins — packages that add custom skills or specialized agents to the core agent. When you install a plugin, the CLI automatically scans your plugin directories and makes the new capabilities available without any manual registration step.
+
+## How plugin discovery works
+
+When the CLI starts, it scans your installed plugin directories and registers any custom skills or specialized agents it finds. You do not need to restart the CLI or edit a configuration file; the scan happens automatically so that newly installed plugins are picked up on the next launch.
+
+<AccordionGroup>
+  <Accordion title="What are skills?">
+    Skills are custom capabilities you can add to the agent. A skill typically provides the agent with specialized instructions, workflows, or domain-specific knowledge — for example, a skill for a particular framework or internal toolchain. Once discovered, a skill is available for the agent to invoke during a session.
+  </Accordion>
+  <Accordion title="What are specialized agents?">
+    Specialized agents are fully scoped agent definitions that focus on a particular task or domain. Unlike skills, which extend what the existing agent knows, a specialized agent operates as its own agent with its own configuration. Both skills and specialized agents are discovered and loaded through the same plugin directory scan.
+  </Accordion>
+</AccordionGroup>

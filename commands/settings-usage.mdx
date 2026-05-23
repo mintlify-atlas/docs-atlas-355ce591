@@ -1,0 +1,45 @@
+---
+title: "Settings and quota commands: /settings, /usage, /quota"
+description: "Configure Antigravity CLI preferences and monitor real-time model usage and quota with /settings, /usage, and /quota."
+---
+
+Settings and quota commands give you direct access to CLI preferences and up-to-the-moment consumption data. You can change the color scheme, sync preferences with the Antigravity 2.0 GUI, and check exactly how much model quota you have remaining — all without leaving the terminal.
+
+---
+
+<AccordionGroup>
+  <Accordion title="/settings" icon="sliders" defaultOpen={true}>
+    Opens the settings panel where you can configure preferences and choose a color scheme.
+
+    **Color scheme**: the terminal color scheme sits at the top of the selection list and is the default choice, both during onboarding and when you open `/settings` directly. Other schemes are listed below it.
+
+    **Preferences sync**: settings you change in Antigravity CLI sync bidirectionally with the Antigravity 2.0 GUI. Any preference you set here will also apply when you use the desktop application, and vice versa.
+  </Accordion>
+
+  <Accordion title="/usage" icon="chart-bar">
+    Displays real-time model usage statistics. Running `/usage` forces a reload of your model configuration and remaining quotas, so the figures you see reflect your current consumption at the moment you run the command — not a cached snapshot.
+
+    <Note>
+      The real-time reload behavior was added in v1.0.1. In earlier versions, usage figures could reflect stale cached data.
+    </Note>
+  </Accordion>
+
+  <Accordion title="/quota" icon="gauge">
+    Shows your remaining quota and detailed consumption data. Like `/usage`, running `/quota` triggers a forced real-time reload of model configuration and quota information, giving you an accurate view of what you have left.
+
+    <Note>
+      The real-time reload behavior was added in v1.0.1. In earlier versions, quota figures could reflect stale cached data.
+    </Note>
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Comparison: `/usage` vs `/quota`
+
+Both commands force a real-time reload of model configuration and quota data. The distinction is in what they surface:
+
+| Command | Primary focus |
+| :--- | :--- |
+| `/usage` | Model usage statistics — how much you have consumed |
+| `/quota` | Remaining quota and consumption data — how much you have left |

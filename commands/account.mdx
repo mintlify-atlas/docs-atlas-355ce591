@@ -1,0 +1,25 @@
+---
+title: "Account commands: sign out with /logout"
+description: "Use /logout to clear your saved Antigravity CLI credentials from the system keyring. Covers when to sign out and how re-authentication works afterward."
+---
+
+Account commands let you manage the authentication state of your Antigravity CLI session. If you need to switch accounts, revoke local access, or simply sign out at the end of a session, the `/logout` command handles credential removal cleanly.
+
+## `/logout`
+
+Clears your saved credentials from the system keyring and signs you out of Antigravity CLI. After running `/logout`, the CLI will prompt you to sign in again the next time you start a session.
+
+### When to use `/logout`
+
+- **Switching accounts**: sign out of your current account before authenticating with a different Google account.
+- **Security**: remove stored credentials from a shared or temporary machine.
+- **End of session**: explicitly revoke local access when you are finished working.
+
+### Re-authenticating after logout
+
+After you run `/logout`, the CLI will not retain any credentials. The next time you launch Antigravity CLI, it will prompt you to complete Google Sign-In:
+
+- **Local**: your default browser opens automatically.
+- **Remote / SSH**: the CLI detects the SSH session and prints an authorization URL for you to complete sign-in from a local browser.
+
+For a full explanation of how authentication works, see [Authentication overview](/authentication/overview).

@@ -1,0 +1,50 @@
+---
+title: "Antigravity agent engine: shared intelligence layer"
+description: "The agent engine is the shared core that powers both Antigravity CLI and Antigravity 2.0, delivering multi-step reasoning, multi-file editing, and tool calling to every surface."
+---
+
+The agent engine is the shared core layer that runs underneath both Antigravity CLI and the Antigravity 2.0 GUI. Rather than maintaining two separate reasoning stacks, Antigravity ships a single engine that both surfaces call into — so every capability improvement, model upgrade, or bug fix you receive in one interface automatically benefits the other.
+
+## What the agent engine provides
+
+The engine exposes four core capabilities to every interface built on top of it:
+
+- **Multi-step reasoning** — The agent breaks complex tasks into smaller steps, working through them sequentially and asking for your approval before applying changes.
+- **Multi-file editing** — A single agent turn can read, propose edits across, and write to multiple files in your codebase. Diffs are presented before any change is committed.
+- **Tool calling** — The agent can invoke terminal commands, search your codebase, and interact with external tools during a session. All tool calls are subject to your configured [tool permissions](/concepts/tool-permissions).
+- **Persistent history** — Sessions and their full context are stored so you can resume exactly where you left off. See [Session management](/concepts/session-management) for details.
+
+## Why both interfaces share the engine
+
+<Note>
+  Antigravity CLI and Antigravity 2.0 run on the **same core agent engine**. Improvements to the engine — new models, smarter reasoning, faster tool execution — propagate to both surfaces automatically without any action required on your part.
+</Note>
+
+The shared architecture has three practical benefits:
+
+1. **Consistent behavior** — A coding task you start in the terminal and export to the GUI continues with the same agent logic. You don't get a different quality of reasoning depending on which surface you use.
+2. **Synchronized settings** — Preferences, permissions, and model configuration sync bidirectionally between the CLI and the GUI. Configure once; both surfaces reflect the change.
+3. **No duplicate maintenance** — Google engineers maintain one engine instead of two, which means more development time goes toward capability improvements rather than keeping two codebases in parity.
+
+## How improvements propagate
+
+When Google ships an engine update — for example, an improvement to how the agent handles long-context files or a new model version — you receive it automatically the next time you update the CLI. Because the GUI draws from the same engine, the update reaches both surfaces in the same release cycle.
+
+This also means that feedback you provide in either surface (flagging a bad edit, approving a tool call, adjusting a permission) can inform the same underlying system.
+
+## Explore related topics
+
+<CardGroup cols={2}>
+  <Card title="Session management" icon="clock-rotate-left" href="/concepts/session-management">
+    Learn how sessions store history, fold long inputs, and export to the GUI.
+  </Card>
+  <Card title="Tool permissions" icon="shield-halved" href="/concepts/tool-permissions">
+    Understand how the agent requests approval and how the sandbox works.
+  </Card>
+  <Card title="Authentication" icon="key" href="/authentication/overview">
+    Sign in locally or over SSH, including enterprise GCP access.
+  </Card>
+  <Card title="Command reference" icon="terminal" href="/commands/overview">
+    Browse all slash commands for sessions, account, settings, and more.
+  </Card>
+</CardGroup>

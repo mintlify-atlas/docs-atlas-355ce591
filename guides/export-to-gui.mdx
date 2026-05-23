@@ -1,0 +1,48 @@
+---
+title: "Move a CLI session to the Antigravity 2.0 GUI"
+description: "Learn when and how to export an active Antigravity CLI session to the Antigravity 2.0 GUI, and what conversation history and context carries over automatically."
+---
+
+Antigravity CLI and Antigravity 2.0 share the same core agent engine, which means a session you start in the terminal can continue in the full GUI application without losing context. If you begin work in the CLI and later need visual orchestration, richer project management, or a more comprehensive interface, you can export your session and pick up exactly where you left off.
+
+## When to export a session
+
+The CLI is optimized for speed, keyboard efficiency, and remote workflows. The Antigravity 2.0 GUI is built for comprehensiveness — visual orchestration, heavier project management, and tasks where a rich graphical interface adds real value. You might want to export when:
+
+- A task grows in scope and you want visual tools to manage multiple workstreams.
+- You need to hand off a session to a teammate who works primarily in the GUI.
+- You want to review diffs, history, or agent steps in a more structured visual layout.
+- You are moving from a remote server back to a local workstation.
+
+## Export your session
+
+<Steps>
+  <Step title="Finish your current turn">
+    Wait for the agent to complete its current step before exporting. Exporting mid-turn is not recommended, as in-progress tool calls may not transfer cleanly.
+  </Step>
+  <Step title="Open the session export option">
+    In the CLI, use the session export option to prepare your session for transfer to Antigravity 2.0. The CLI confirms the session is ready before initiating the transfer.
+  </Step>
+  <Step title="Open Antigravity 2.0">
+    Launch the Antigravity 2.0 GUI on your local machine. If you exported from a remote server, make sure you are signed in with the same Google account on your local machine.
+  </Step>
+  <Step title="Continue the session in the GUI">
+    Antigravity 2.0 loads the exported session, including the full conversation history and session context. You can continue issuing instructions to the agent as if you had never left the terminal.
+  </Step>
+</Steps>
+
+## What carries over
+
+Because both interfaces run on the same shared core agent engine, the following session data is preserved when you export:
+
+- **Conversation history**: Every message, agent response, and tool call from the CLI session.
+- **Session context**: The agent's understanding of your codebase, open files, and task state at the time of export.
+- **Permissions and settings**: Tool permissions and preferences sync bidirectionally between the CLI and the GUI.
+
+<Note>
+  Antigravity CLI and Antigravity 2.0 run on the same core agent engine. This means improvements to the underlying agent apply to both interfaces simultaneously, and exporting a session does not change how the agent reasons or executes — the same engine continues running your task in the new interface.
+</Note>
+
+## Shared settings and preferences
+
+Preferences you configure in the CLI, including tool permissions and color scheme, sync bidirectionally with Antigravity 2.0. Changes made in the GUI are reflected the next time you start or resume a CLI session, and vice versa.
